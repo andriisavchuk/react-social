@@ -31,7 +31,6 @@ app.get('/', (req, res) => {
   res.send('Hello from Main Route.');
 });
 
-
 // use routes
 app.use('/api/user', user);
 app.use('/api/profile', profile);
