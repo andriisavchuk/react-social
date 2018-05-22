@@ -26,6 +26,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(express.static(path.join(__dirname, 'public')));
 
+// Handling CORS(Cross-Origin-Resource-Sharing) Errors
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-Width, Content-Type, Accept, Authorization'
+  );
+
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+  }
+  next();
+});
+
 // routes
 app.get('/', (req, res) => {
   res.send('Hello from Main Route.');
@@ -35,5 +50,21 @@ app.get('/', (req, res) => {
 app.use('/api/user', user);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
+
+// errors handling
+app.use((req, res, next) => {
+  const error = new Error('404 Error. Not found');  
+  error.status = 404;  
+  next(error);
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message
+    }
+  });
+});
 
 module.exports = app;
