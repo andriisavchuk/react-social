@@ -3,6 +3,7 @@ const path      = require('path');
 const favicon   = require('serve-favicon');
 const logger    = require('morgan');
 const mongoose  = require('mongoose');
+const passport  = require('passport');
 
 const user      = require('./routes/api/user');
 const profile   = require('./routes/api/profile');
@@ -41,10 +42,11 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes
-app.get('/', (req, res) => {
-  res.send('Hello from Main Route.');
-});
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport config
+require('./config/passport')(passport);
 
 // use routes
 app.use('/api/user', user);
