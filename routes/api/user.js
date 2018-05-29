@@ -27,6 +27,7 @@ router.post('/signup', (req, res, next) => {
   const { errors, isValid } = validateSignupInput(req.body);
 
   // Check Validation
+  console.log(isValid);
   if (!isValid) {
     return res.status(400).json(errors);
   }

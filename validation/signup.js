@@ -5,6 +5,7 @@ module.exports = function(data) {
   let errors = {};
 
   data.name = !isEmpty(data.name) ? data.name : '';
+  data.surname = !isEmpty(data.surname) ? data.surname : '';
   data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
   data.conf_password = !isEmpty(data.conf_password) ? data.conf_password : '';
@@ -15,6 +16,14 @@ module.exports = function(data) {
 
   if (Validator.isEmpty(data.name)) {
     errors.name = 'Name field is required';
+  }
+
+  if (!Validator.isLength(data.surname, { min: 2, max: 30 })) {
+    errors.surname = 'Surname must be between 2 and 30 characters';
+  }
+
+  if (Validator.isEmpty(data.surname)) {
+    errors.surname = 'Surname field is required';
   }
 
   if (Validator.isEmpty(data.email)) {
@@ -29,7 +38,7 @@ module.exports = function(data) {
     errors.password = 'Password is required';
   }
 
-  if (!Validator.isLength(data.password), {min: 6, max: 30}) {
+  if (!Validator.isLength(data.password, {min: 6, max: 30})) {
     errors.password = 'Password must be at least 6 characters';
   }
 
