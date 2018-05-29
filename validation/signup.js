@@ -1,5 +1,5 @@
 const Validator = require('validator');
-const isEmpty = require('./isEmpty');
+const isEmpty   = require('./isEmpty');
 
 module.exports = function(data) {
   let errors = {};
@@ -38,7 +38,7 @@ module.exports = function(data) {
     errors.password = 'Password is required';
   }
 
-  if (!Validator.isLength(data.password, {min: 6, max: 30})) {
+  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
     errors.password = 'Password must be at least 6 characters';
   }
 

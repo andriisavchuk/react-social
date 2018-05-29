@@ -1,3 +1,4 @@
+// Function to validate if the inputed field is empty
 const isEmpty = (value) =>
   value === undefined ||
   value === null ||
