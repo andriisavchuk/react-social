@@ -32,7 +32,7 @@ router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => 
 // @route  POST api/profile
 // @desc   Create or update user profile
 // @acces  Private
-router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
   const { errors, isValid } = validateProfileInput(req.body);
 
   // Check Validation
