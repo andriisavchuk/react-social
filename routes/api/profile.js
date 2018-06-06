@@ -41,10 +41,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     return res.status(400).json(errors);
   }
 
-
   //Get fields
   const profileFields = {};
-  profileFields.user = req.body.id;
+  profileFields.user = req.user.id;
 
   if (req.body.handle) profileFields.handle = req.body.handle;
   if (req.body.company) profileFields.company = req.body.company;
@@ -62,11 +61,11 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
   // Social Networks
   profileFields.social = {};
 
-  if (req.body.linkedin) profileFields.social.linkedin;
-  if (req.body.facebook) profileFields.social.facebook;
-  if (req.body.youtube) profileFields.social.youtube;
-  if (req.body.twitter) profileFields.social.twitter;
-  if (req.body.instagram) profileFields.social.instagram;
+  if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
+  if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
+  if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
+  if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
+  if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
   Profile.findOne({ user: req.user.id })
     .then(profile => {
