@@ -9,13 +9,19 @@ const Post     = require('../../models/Post');
 // Validation
 const validatePostInput = require('../../validation/post');
 
-// @route  GET api/posts
+// @route  GET api/post
+// @desc    GET posts
 // @acces  Public
-router.get('/', (req, res) => res.json({
-  message : 'Hello from posts router'
-}));
+router.get('/', (req, res) => {
+  Post.find()
+    .sort({ date: -1 })
+    .then(posts => res.json(posts))
+    .catch(err => res.status(404));
+  }
+);
 
-// @route  POST api/posts
+
+// @route  POST api/post
 // @desc   Create post
 // @acces  Private
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
