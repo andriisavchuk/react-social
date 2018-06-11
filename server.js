@@ -7,7 +7,7 @@ const passport  = require('passport');
 
 const user      = require('./routes/api/user');
 const profile   = require('./routes/api/profile');
-const posts     = require('./routes/api/posts');
+const posts     = require('./routes/api/post');
 
 const app       = express();
 
@@ -51,12 +51,12 @@ require('./config/passport')(passport);
 // use routes
 app.use('/api/user', user);
 app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+app.use('/api/post', posts);
 
 // errors handling
 app.use((req, res, next) => {
-  const error = new Error('404 Error. Not found');  
-  error.status = 404;  
+  const error = new Error('404 Error. Not found');
+  error.status = 404;
   next(error);
 });
 
