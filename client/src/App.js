@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+
+import Navbar from './components/Navbar';
+import Main from './components/Main';
+import Footer from './components/Footer';
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Social Net</h1>
+        <Navbar />
+        <Main />
+        <Footer />
       </div>
     );
   }
