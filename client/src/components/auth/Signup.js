@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 class Signup extends Component {
   constructor() {
@@ -32,7 +33,10 @@ class Signup extends Component {
       conf_password: this.state.conf_password
     };
 
-    console.log(newUser);
+
+    axios.post('api/user/signup', newUser)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err.response.data));
   }
 
   render() {
