@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { loginUser } from '../../actions/authActions';
 
-
 class Login extends Component {
   constructor() {
     super();
@@ -18,8 +17,10 @@ class Login extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  onChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,6 +31,10 @@ class Login extends Component {
     if (nextProps.errors) {
       this.setState({errors: nextProps.errors});
     }
+  }
+
+  onChange(event) {
+    this.setState({[event.target.name]: event.target.value});
   }
 
   onSubmit(event) {
