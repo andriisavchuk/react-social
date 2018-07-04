@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
 import { loginUser } from '../../actions/authActions';
-import TextFieldGroup from '../common/TextFieldGroup';
+import InputFieldGroup from '../common/InputFieldGroup';
 
 class Login extends Component {
   constructor() {
@@ -60,8 +59,8 @@ class Login extends Component {
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">Sign in to your account</p>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email Address"
+                <InputFieldGroup
+                  placeholder="Email"
                   name="email"
                   type="email"
                   value={this.state.email}
@@ -69,7 +68,7 @@ class Login extends Component {
                   error={errors.email}
                 />
 
-                <TextFieldGroup
+                <InputFieldGroup
                   placeholder="Password"
                   name="password"
                   type="password"
