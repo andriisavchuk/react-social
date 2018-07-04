@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { signupUser } from '../../actions/authActions';
 import InputFieldGroup from '../common/InputFieldGroup';
-
 
 class Signup extends Component {
   constructor() {
