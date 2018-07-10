@@ -10,7 +10,7 @@ class CreateProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displaySocailInputs: false,
+      displaySocialInputs: false,
       handle: '',
       company: '',
       website: '',
@@ -42,7 +42,59 @@ class CreateProfile extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { errors, displaySocialInputs } = this.state;
+    let socialInputs;
+
+    if (displaySocialInputs) {
+      socialInputs = (
+        <div>
+          <SocialsInputGroup
+            placeholder="LinkedIn Profile URL"
+            name="linkedin"
+            icon="fab fa-linkedin"
+            value={this.state.linkedin}
+            onChange={this.onChange}
+            error={errors.linkedin}
+          />
+
+          <SocialsInputGroup
+            placeholder="Facebook Page URL"
+            name="facebook"
+            icon="fab fa-facebook"
+            value={this.state.facebook}
+            onChange={this.onChange}
+            error={errors.facebook}
+          />
+
+          <SocialsInputGroup
+            placeholder="YouTube Channel URL"
+            name="youtube"
+            icon="fab fa-youtube"
+            value={this.state.youtube}
+            onChange={this.onChange}
+            error={errors.youtube}
+          />
+
+          <SocialsInputGroup
+            placeholder="Twitter Profile URL"
+            name="twitter"
+            icon="fab fa-twitter"
+            value={this.state.twitter}
+            onChange={this.onChange}
+            error={errors.twitter}
+          />
+
+          <SocialsInputGroup
+            placeholder="Instagram Profile URL"
+            name="instagram"
+            icon="fab fa-instagram"
+            value={this.state.instagram}
+            onChange={this.onChange}
+            error={errors.instagram}
+          />
+        </div>
+      )
+    }
 
     const options = [
       { label: '* Select Professional Status', value: 0 },
@@ -67,24 +119,98 @@ class CreateProfile extends Component {
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
-              <InputFieldGroup
-                placeholder="* Profile Handle"
-                name="handle"
-                value={this.state.handle}
-                onChange={this.onChange}
-                error={errors.handle}
-                info="A unique handle for oyur profile URL. Your full name, company name, nickname"
-              />
+                <InputFieldGroup
+                  placeholder="* Profile Handle"
+                  name="handle"
+                  value={this.state.handle}
+                  onChange={this.onChange}
+                  error={errors.handle}
+                  info="A unique handle for oyur profile URL. Your full name, company name, nickname"
+                />
 
-              <SelectListGroup
-                placeholder="Status"
-                name="status"
-                value={this.state.status}
-                onChange={this.onChange}
-                options={options}
-                error={errors.status}
-                info="Give us an idea of where you are in in your career"
-              />
+                <SelectListGroup
+                  placeholder="Status"
+                  name="status"
+                  value={this.state.status}
+                  onChange={this.onChange}
+                  options={options}
+                  error={errors.status}
+                  info="Give us an idea of where you are in in your career"
+                />
+
+                <InputFieldGroup
+                  placeholder="Company"
+                  name="company"
+                  value={this.state.company}
+                  onChange={this.onChange}
+                  error={errors.company}
+                />
+
+                <InputFieldGroup
+                  placeholder="Website"
+                  name="website"
+                  value={this.state.website}
+                  onChange={this.onChange}
+                  error={errors.website}
+                />
+
+                <InputFieldGroup
+                  placeholder="Location"
+                  name="location"
+                  value={this.state.location}
+                  onChange={this.onChange}
+                  error={errors.location}
+                />
+
+                <InputFieldGroup
+                  placeholder="Skills"
+                  name="skills"
+                  value={this.state.skills}
+                  onChange={this.onChange}
+                  error={errors.skills}
+                  info="Please, use comma separated values (eg. Sales, Customer Service, etc.)"
+                />
+
+                <InputFieldGroup
+                  placeholder="Github username"
+                  name="githubusername"
+                  value={this.state.githubusername}
+                  onChange={this.onChange}
+                  error={errors.githubusername}
+                />
+
+                <TextAreaFieldGroup
+                  placeholder="Short Bio"
+                  name="bio"
+                  value={this.state.bio}
+                  onChange={this.onChange}
+                  error={errors.bio}
+                  info="Tell us a little about yourself"
+                />
+
+                <div className="mb-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      this.setState(prevState => ({
+                        displaySocialInputs: !prevState.displaySocialInputs
+                      }));
+                    }}
+                    className="btn btn-success mr-2"
+                  >
+                    Add Social Network Links
+                  </button>
+                  <span className="text-muted">Optional</span>
+                </div>
+                {socialInputs}
+                <input
+                  type="submit"
+                  value="Submit"
+                  className="btn btn-info btn-block mt-4"
+                />
+
+
+
               </form>
             </div>
           </div>
