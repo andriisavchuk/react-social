@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import InputFieldGroup from '../common/InputFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import SocialsInputGroup from '../common/SocialsInputGroup';
 import SelectListGroup from '../common/SelectListGroup';
+import { createProfile } from '../../actions/profileActions';
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -25,10 +27,16 @@ class CreateProfile extends Component {
       twitter: '',
       instagram: '',
       errors: {}
-    }
+    };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
   }
 
   onChange(event) {
@@ -38,11 +46,28 @@ class CreateProfile extends Component {
   onSubmit(event) {
     event.preventDefault();
 
-    console.log('submit');
+    const profileData = {
+      handle: this.state.handle,
+      company: this.state.company,
+      website: this.state.website,
+      location: this.state.location,
+      status: this.state.status,
+      skills: this.state.skills,
+      githubusername: this.state.githubusername,
+      bio: this.state.bio,
+      linkedin: this.state.linkedin,
+      facebook: this.state.facebook,
+      youtube: this.state.youtube,
+      twitter: this.state.twitter,
+      instagram: this.state.instagram
+    }
+
+    this.props.createProfile(profileData, this.props.history);
   }
 
   render() {
     const { errors, displaySocialInputs } = this.state;
+
     let socialInputs;
 
     if (displaySocialInputs) {
@@ -93,9 +118,10 @@ class CreateProfile extends Component {
             error={errors.instagram}
           />
         </div>
-      )
+      );
     }
 
+    // Select options for field Status
     const options = [
       { label: '* Select Professional Status', value: 0 },
       { label: 'Student', value: 'Student' },
@@ -125,7 +151,7 @@ class CreateProfile extends Component {
                   value={this.state.handle}
                   onChange={this.onChange}
                   error={errors.handle}
-                  info="A unique handle for oyur profile URL. Your full name, company name, nickname"
+                  info="A unique handle for your profile URL. Your full name, company name, nickname"
                 />
 
                 <SelectListGroup
@@ -208,9 +234,6 @@ class CreateProfile extends Component {
                   value="Submit"
                   className="btn btn-info btn-block mt-4"
                 />
-
-
-
               </form>
             </div>
           </div>
@@ -230,4 +253,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 })
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile));
