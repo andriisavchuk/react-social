@@ -16,6 +16,7 @@ import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
+import EditProfile from './components/edit-profile/EditProfile';
 
 import './App.css';
 
@@ -31,7 +32,7 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
 
   // Check for expired token
-  const currentTime = Date.now / 1000;
+  const currentTime = Date.now() / 1000;
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
@@ -56,14 +57,23 @@ class App extends Component {
               <Route exact path="/login" component={ Login } />
               <Switch>
                 <PrivateRoute
-                  exact path="/dashboard"
+                  exact
+                  path="/dashboard"
                   component={ Dashboard }
                 />
               </Switch>
               <Switch>
-                <CreateProfile
-                  exact path="/create-profile"
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
                   component={ CreateProfile }
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={ EditProfile }
                 />
               </Switch>
             </div>
