@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import InputFieldGroup from '../common/InputFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import PropTypes from 'prop-types';
+import { addExperience} from '../../actions/profileActions';
 
 class AddExperience extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class AddExperience extends Component {
       from: '',
       to: '',
       current: false,
-      descrition: '',
+      description: '',
       errors: {},
       disabled: false
     };
@@ -29,10 +30,28 @@ class AddExperience extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
+
   onSubmit(event) {
     event.preventDefault();
 
-    console.localStorage('submit');
+    const expData = {
+      company: this.state.company,
+      title: this.state.title,
+      location: this.state.location,
+      from: this.state.from,
+      to: this.state.to,
+      current: this.state.current,
+      description: this.state.description
+    };
+
+    this.props.addExperience(expData, this.props.history);
   }
 
   onCheck(event) {
@@ -41,8 +60,6 @@ class AddExperience extends Component {
       current: !this.state.current,
     });
   }
-
-
 
   render() {
     const { errors } = this.state;
@@ -114,11 +131,11 @@ class AddExperience extends Component {
                     onChange={this.onCheck}
                     id="current"
                   />
-                  <lable
-                    hmlFor="current"
+                  <label
+                    hmtlfor="current"
                     className="form-check-label">
                       Current Job
-                  </lable>
+                  </label>
                 </div>
                 <TextAreaFieldGroup
                   placeholder="Job Description"
@@ -144,6 +161,7 @@ class AddExperience extends Component {
 }
 
 AddExperience.propTypes = {
+  addExperience: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
@@ -153,4 +171,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors
 });
 
-export default connect()(withRouter(AddExperience));
+export default connect(mapStateToProps, { addExperience })(withRouter(AddExperience));
