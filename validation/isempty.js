@@ -1,8 +1,8 @@
 // Function to validate if the inputed field is empty
-const isEmpty = (value) =>
+const isempty = (value) =>
   value === undefined ||
   value === null ||
   (typeof value === 'object' && Object.keys(value).length === 0) ||
   (typeof value === 'string' && value.trim().length === 0);
 
-module.exports = isEmpty;
+module.exports = isempty;
