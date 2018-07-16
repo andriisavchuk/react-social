@@ -1,5 +1,5 @@
 // Function to validate if the inputed field is empty
-const isEmpty = (value) =>
+const isEmpty = value =>
   value === undefined ||
   value === null ||
   (typeof value === 'object' && Object.keys(value).length === 0) ||

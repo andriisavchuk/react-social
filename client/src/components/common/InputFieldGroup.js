@@ -28,8 +28,8 @@ const InputFieldGroup = ({
       {info && <small className="form-text text-muted">{info}</small>}
       {error && <div className="invalid-feedback">{error}</div>}
     </div>
-  )
-}
+  );
+};
 
 InputFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
@@ -40,10 +40,10 @@ InputFieldGroup.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   diasbled: PropTypes.string
-}
+};
 
 InputFieldGroup.defaultProps = {
   type: 'text'
-}
+};
 
 export default InputFieldGroup;

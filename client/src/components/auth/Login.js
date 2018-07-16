@@ -29,12 +29,12 @@ class Login extends Component {
     }
 
     if (nextProps.errors) {
-      this.setState({errors: nextProps.errors});
+      this.setState({ errors: nextProps.errors });
     }
   }
 
   onChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   onSubmit(event) {
@@ -45,7 +45,7 @@ class Login extends Component {
       password: this.state.password
     };
 
-   this.props.loginUser(userData);
+    this.props.loginUser(userData);
   }
 
   render() {
@@ -76,13 +76,18 @@ class Login extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" value="Login"/>
+
+                <input
+                  type="submit"
+                  className="btn btn-info btn-block mt-4"
+                  value="Login"
+                />
               </form>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -90,11 +95,14 @@ Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

@@ -1,11 +1,19 @@
 import axios from 'axios';
 
-import { GET_PROFILE, GET_PROFILES, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_ERRORS, SET_CURRENT_USER } from './types';
+import {
+  GET_PROFILE,
+  GET_PROFILES,
+  PROFILE_LOADING,
+  CLEAR_CURRENT_PROFILE,
+  GET_ERRORS,
+  SET_CURRENT_USER
+} from './types';
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
-  axios.get('/api/profile')
+  axios
+    .get('/api/profile')
     .then(res =>
       dispatch({
         type: GET_PROFILE,
@@ -16,10 +24,9 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         type: GET_PROFILE,
         payload: {}
-      }
-    )
-  )
-}
+      })
+    );
+};
 
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
@@ -51,7 +58,7 @@ export const createProfile = (profileData, history) => dispatch => {
         payload: err.response.data
       })
     );
-}
+};
 
 // Add experience
 export const addExperience = (expData, history) => dispatch => {
@@ -64,7 +71,7 @@ export const addExperience = (expData, history) => dispatch => {
         payload: err.response.data
       })
     );
-}
+};
 
 // Add education
 export const addEducation = (eduData, history) => dispatch => {
@@ -77,10 +84,10 @@ export const addEducation = (eduData, history) => dispatch => {
         payload: err.response.data
       })
     );
-}
+};
 
 // Delete work experience
-export const deleteExperience = (id) => dispatch => {
+export const deleteExperience = id => dispatch => {
   axios
     .delete(`/api/profile/experience/${id}`)
     .then(res =>
@@ -95,10 +102,10 @@ export const deleteExperience = (id) => dispatch => {
         payload: err.response.data
       })
     );
-}
+};
 
 // Delete education
-export const deleteEducation = (id) => dispatch => {
+export const deleteEducation = id => dispatch => {
   axios
     .delete(`/api/profile/education/${id}`)
     .then(res =>
@@ -113,7 +120,7 @@ export const deleteEducation = (id) => dispatch => {
         payload: err.response.data
       })
     );
-}
+};
 
 // Get all profiles
 export const getProfiles = () => dispatch => {
@@ -132,9 +139,7 @@ export const getProfiles = () => dispatch => {
         payload: null
       })
     );
-}
-
-
+};
 
 // Delete account & profile
 export const deleteAccount = () => dispatch => {
@@ -152,20 +157,20 @@ export const deleteAccount = () => dispatch => {
           type: GET_ERRORS,
           payload: err.response.data
         })
-      )
+      );
   }
-}
+};
 
 // Profile loading
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING
-  }
-}
+  };
+};
 
 // Clear Profile
 export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
-  }
-}
+  };
+};

@@ -23,7 +23,7 @@ class Signup extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({errors: nextProps.errors});
+      this.setState({ errors: nextProps.errors });
     }
   }
 
@@ -34,7 +34,7 @@ class Signup extends Component {
   }
 
   onChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   onSubmit(event) {
@@ -50,7 +50,6 @@ class Signup extends Component {
     };
 
     this.props.signupUser(newUser, this.props.history);
-
   }
 
   render() {
@@ -107,13 +106,18 @@ class Signup extends Component {
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" value="Submit"/>
+
+                <input
+                  type="submit"
+                  className="btn btn-info btn-block mt-4"
+                  value="Submit"
+                />
               </form>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -121,11 +125,14 @@ Signup.propTypes = {
   signupUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { signupUser })(withRouter(Signup));
+export default connect(
+  mapStateToProps,
+  { signupUser }
+)(withRouter(Signup));

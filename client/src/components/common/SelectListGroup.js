@@ -12,18 +12,18 @@ const SelectListGroup = ({ name, value, error, info, onChange, options }) => {
     <div className="form-group">
       <select
         className={classnames('form-control form-control-lg', {
-          'is-invalid' : error
+          'is-invalid': error
         })}
         name={name}
         value={value}
         onChange={onChange}
       >
-         {selectOptions}
+        {selectOptions}
       </select>
       {info && <small className="form-text text-muted">{info}</small>}
       {error && <div className="invalid-feedback">{error}</div>}
     </div>
-  )
+  );
 };
 
 SelectListGroup.propTypes = {

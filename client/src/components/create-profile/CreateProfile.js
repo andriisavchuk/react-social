@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -60,7 +60,7 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       twitter: this.state.twitter,
       instagram: this.state.instagram
-    }
+    };
 
     this.props.createProfile(profileData, this.props.history);
   }
@@ -141,7 +141,8 @@ class CreateProfile extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Create Your Profile</h1>
               <p className="lead text-center">
-                Let's create your profile to allow other people to know more about you.
+                Let's create your profile to allow other people to know more
+                about you.
               </p>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
@@ -228,7 +229,9 @@ class CreateProfile extends Component {
                   </button>
                   <span className="text-muted">Optional</span>
                 </div>
+
                 {socialInputs}
+
                 <input
                   type="submit"
                   value="Submit"
@@ -239,18 +242,21 @@ class CreateProfile extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
-})
+});
 
-export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile));
+export default connect(
+  mapStateToProps,
+  { createProfile }
+)(withRouter(CreateProfile));

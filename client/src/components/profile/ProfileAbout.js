@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class ProfileAbout extends Component {
   render() {
@@ -6,7 +6,7 @@ class ProfileAbout extends Component {
       <div>
         <h1>Porfile About</h1>
       </div>
-    )
+    );
   }
 }
 

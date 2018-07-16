@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import InputFieldGroup from '../common/InputFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import PropTypes from 'prop-types';
-import { addEducation} from '../../actions/profileActions';
+import { addEducation } from '../../actions/profileActions';
 
 class AddEducation extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class AddEducation extends Component {
   }
 
   onChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +57,7 @@ class AddEducation extends Component {
   onCheck(event) {
     this.setState({
       disabled: !this.state.disabled,
-      current: !this.state.current,
+      current: !this.state.current
     });
   }
 
@@ -131,12 +131,11 @@ class AddEducation extends Component {
                     onChange={this.onCheck}
                     id="current"
                   />
-                  <label
-                    hmtlfor="current"
-                    className="form-check-label">
-                      Is it current?
+                  <label hmtlfor="current" className="form-check-label">
+                    Is it current?
                   </label>
                 </div>
+
                 <TextAreaFieldGroup
                   placeholder="Program Description"
                   name="description"
@@ -166,9 +165,12 @@ AddEducation.propTypes = {
   errors: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addEducation })(withRouter(AddEducation));
+export default connect(
+  mapStateToProps,
+  { addEducation }
+)(withRouter(AddEducation));

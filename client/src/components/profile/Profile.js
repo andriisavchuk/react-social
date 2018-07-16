@@ -24,17 +24,20 @@ class Profile extends Component {
         <ProfileCreds />
         <ProfileGithub />
       </div>
-    )
+    );
   }
 }
 
 Profile.propTypes = {
   getProfileByHandle: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   profile: state.profile
-})
+});
 
-export default connect(mapStateToProps, {getProfileByHandle})(Profile);
+export default connect(
+  mapStateToProps,
+  { getProfileByHandle }
+)(Profile);

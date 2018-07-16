@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import InputFieldGroup from '../common/InputFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import PropTypes from 'prop-types';
-import { addExperience} from '../../actions/profileActions';
+import { addExperience } from '../../actions/profileActions';
 
 class AddExperience extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class AddExperience extends Component {
   }
 
   onChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -57,7 +57,7 @@ class AddExperience extends Component {
   onCheck(event) {
     this.setState({
       disabled: !this.state.disabled,
-      current: !this.state.current,
+      current: !this.state.current
     });
   }
 
@@ -131,12 +131,11 @@ class AddExperience extends Component {
                     onChange={this.onCheck}
                     id="current"
                   />
-                  <label
-                    hmtlfor="current"
-                    className="form-check-label">
-                      Current Job
+                  <label hmtlfor="current" className="form-check-label">
+                    Current Job
                   </label>
                 </div>
+
                 <TextAreaFieldGroup
                   placeholder="Job Description"
                   name="description"
@@ -166,9 +165,12 @@ AddExperience.propTypes = {
   errors: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { addExperience })(withRouter(AddExperience));
+export default connect(
+  mapStateToProps,
+  { addExperience }
+)(withRouter(AddExperience));

@@ -1,20 +1,25 @@
-const express   = require('express');
-const path      = require('path');
-const favicon   = require('serve-favicon');
-const logger    = require('morgan');
-const mongoose  = require('mongoose');
-const passport  = require('passport');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const passport = require('passport');
 
-const user      = require('./routes/api/user');
-const profile   = require('./routes/api/profile');
-const posts     = require('./routes/api/posts');
+const user = require('./routes/api/user');
+const profile = require('./routes/api/profile');
+const posts = require('./routes/api/posts');
 
-const app       = express();
+const app = express();
 
 // DB Config
-const db        = require('./config/db');
+const db = require('./config/db');
+
 mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI, { useNewUrlParser: true })
+mongoose
+  .connect(
+    db.mongoURI,
+    { useNewUrlParser: true }
+  )
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err));
 

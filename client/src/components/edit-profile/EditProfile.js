@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -53,14 +53,26 @@ class CreateProfile extends Component {
       profile.company = !isEmpty(profile.company) ? profile.company : '';
       profile.website = !isEmpty(profile.website) ? profile.website : '';
       profile.location = !isEmpty(profile.location) ? profile.location : '';
-      profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : '';
+      profile.githubusername = !isEmpty(profile.githubusername)
+        ? profile.githubusername
+        : '';
       profile.bio = !isEmpty(profile.bio) ? profile.bio : '';
       profile.social = !isEmpty(profile.social) ? profile.social : {};
-      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : '';
-      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : '';
-      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : '';
-      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : '';
-      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : '';
+      profile.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.social.linkedin
+        : '';
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : '';
+      profile.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : '';
+      profile.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : '';
+      profile.instagram = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : '';
 
       // Set component fields state
       this.setState({
@@ -77,7 +89,7 @@ class CreateProfile extends Component {
         youtube: profile.youtube,
         twitter: profile.twitter,
         instagram: profile.instagram
-      })
+      });
     }
   }
 
@@ -102,7 +114,7 @@ class CreateProfile extends Component {
       youtube: this.state.youtube,
       twitter: this.state.twitter,
       instagram: this.state.instagram
-    }
+    };
 
     this.props.createProfile(profileData, this.props.history);
   }
@@ -270,7 +282,9 @@ class CreateProfile extends Component {
                   </button>
                   <span className="text-muted">Optional</span>
                 </div>
+
                 {socialInputs}
+
                 <input
                   type="submit"
                   value="Submit"
@@ -281,7 +295,7 @@ class CreateProfile extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -290,11 +304,14 @@ CreateProfile.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
-})
+});
 
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(withRouter(CreateProfile));
+export default connect(
+  mapStateToProps,
+  { createProfile, getCurrentProfile }
+)(withRouter(CreateProfile));

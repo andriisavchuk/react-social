@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import spinner from '../../img/spinner.gif';
 
 export default () => {
@@ -6,9 +6,9 @@ export default () => {
     <div>
       <img
         src={spinner}
-        style={{ width: "200px", margin: "auto", display: "block"}}
+        style={{ width: '200px', margin: 'auto', display: 'block' }}
         alt="Loading..."
       />
     </div>
-  )
-}
+  );
+};

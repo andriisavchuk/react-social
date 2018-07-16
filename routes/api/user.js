@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ email: req.body.email }).then((user) => {
+  User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       errors.email = 'User with current email already exists.';
       return res.status(409).json(errors);
@@ -57,8 +57,8 @@ router.post('/signup', (req, res, next) => {
           newUser.password = hash;
           newUser
             .save()
-            .then((user) => res.json(user))
-            .catch((err) => console.log(err));
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
         });
       });
     }
@@ -80,7 +80,7 @@ router.post('/login', (req, res, next) => {
   const password = req.body.password;
 
   //Find user by email
-  User.findOne({ email }).then((user) => {
+  User.findOne({ email }).then(user => {
     //Check for user
     if (!user) {
       errors.email = 'User not found';
@@ -88,7 +88,7 @@ router.post('/login', (req, res, next) => {
     }
 
     // Check password
-    bcrypt.compare(password, user.password).then((isMatch) => {
+    bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
         // User matched
         const payload = {
