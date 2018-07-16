@@ -14,7 +14,7 @@ const app       = express();
 // DB Config
 const db        = require('./config/db');
 mongoose.Promise = global.Promise;
-mongoose.connect(db.mongoURI)
+mongoose.connect(db.mongoURI, { useNewUrlParser: true })
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log(err));
 
